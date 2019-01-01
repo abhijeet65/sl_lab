@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2 align = "center" id="Hover Text" onmouseover="myHoverFunction()"> Patient Details </h2>
+<br>
+Hospital name:
+<span id="h_name" ></span><br><br>
+Hospital location:
+<span id="h_loc" ></span>
+<table id="table1" border=1 hidden>
+<th> Name</th><th>Aadhaar</th><th>Lab_Tests</th>
+<tr><td id="name1"></td><td id = "id1"></td><td id = "test1"></tr>
+<tr><td id="name2"></td><td id = "id2"></td><td id = "test2"></tr>
+<tr><td id="name3"></td><td id = "id3"></td><td id = "test3"></tr>
+</table>
+
+<script type="text/javascript" src="aadhaar.js"></script>
+<script>
+function myHoverFunction()
+{
+  document.getElementById("Hover Text").style.color = "red";
+  document.getElementById("table1").removeAttribute('hidden');
+    var p = [
+        {"name":"Dhoni", "id": "7777", "tests":["yoyo", "blood"]},
+        {"name":"Dravid", "id": "7747", "tests":["blood", "body", "yoyo"]},
+        {"name":"Nehra", "id": "6558", "tests":["blood", "urine"] }
+    ];
+
+    var i1, j1, x1=" ",x2=" "; z1=" ";
+    var n = "name"; var m="test"; var im = "id"; var k=0;
+
+
+    for (i1 in p) {
+        x1 = " "; x2 = " "; z1 = " ";
+        k = k+1;
+        n = "name"; n +=k;
+        m = "test"; m += k;
+        im = "id"; im += k;
+
+        x1 += p[i1].name;
+        document.getElementById(n).setAttribute("id",n);
+        document.getElementById(n).innerHTML = x1;
+
+        for (j1 in p[i1].tests) {
+
+            x2 +=p[i1].tests[j1]+ "&nbsp&nbsp&nbsp";
+
+            document.getElementById(m).setAttribute("id",m);
+            document.getElementById(m).innerHTML = x2;
+        }
+        z1 += p[i1].id;
+        document.getElementById(im).setAttribute("id",im);
+        document.getElementById(im).innerHTML = z1;
+        //document.getElementById("demo").innerHTML = z1;
+    }
+}//end clickFunction
+</script>
+<style>
+  table {
+    text-align: center;
+    width: 100%;
+  }
+
+  td {
+      font-size: xx-large;
+  }
+  th {
+    font-size: x-large;
+    background-color: #8B008B;
+    color: white;
+  }
+  th:hover {
+    background-color: #87CEFA;
+
+  }
+</style>
+
+</body>
+</html>

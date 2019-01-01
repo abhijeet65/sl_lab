@@ -1,0 +1,167 @@
+#Demo: Classes in Python
+#Notice the use of "self". It is the first argument passed to any function.
+
+class Person:
+  def __init__(self,name,age): #This is the constructor of the class Person
+    self.name = name;
+    self.age = age;
+
+#Two objects s1 and s2 are created. The __init__ constructor is autonmatically called
+p1 = Person("Suppandi", 14)
+p2 = Person("Ramu", 12)
+
+print("\nName of Person #1 is", p1.name)
+print("\nAge of Person #1 is", p1.age)
+
+print("\nName of Person #2 is", p2.name)
+print("\nAge of Person #2 is", p2.age)
+
+p2.age = 10 #Attributes of the object can be modified like this. By default public
+
+print("\nModified Age of Person #2 is", p2.age)
+
+
+#Demo: Adding functions to class
+#Concept: Python classes without constructors are ambiguous
+class Person:
+
+  #def __init__(self,name,age):
+    #self.name = name;
+    #self.age = age;
+
+  def display(self):
+        print("\nName of Person  is", self.name)
+        print("\nAge of Person  is", self.age)
+
+#s1 = Person("Suppandi", 16) #Constructor commented in this code
+
+p1 = Person
+p2 = Person
+
+#Copy & Paste p1.name and p1.age AFTER p2.name and p2.age and see!!
+#Python is taking the most recently created object and passing it as parameter to display
+#Reason: display(self) expects any object of Person and p2 is a valid object!!
+#Therefore it is better to use constructors!
+
+p1.name = "Private Ryan!"
+p1.age = 25
+
+p2.name = "Forrest Gump!"
+p2.age = 38
+
+print("\n Printing the contents of p1 object attributes - WRONGLY!!")
+p1.display(p1) #If  constructor is defined then "pi" need not be passed as argument to display 
+
+
+
+
+#Demo: Adding functions to class
+#Concept: Python "expects" an instance of an object to be present BEFORE a function is called
+#Therefore if "s1.insert()"" is called with void brakcets - the code wont compile - if Student Constuctor is undefined
+class Person:
+
+  #def __init__(self,name,age):
+    #self.name = name;
+    #self.age = age;
+
+  def insert(self):
+       p3 = self #Creates an instance / object of Person "p3"
+       print("\n Printing the contents of local object p3 created with object attributes passed to it - Forrest Gump")
+       p3.display(p3)
+       print("\n Printing the contents of p1 having object attributes of p2 passed to it - Forrest Gump")
+       self.display(p2)
+
+       self.name = input(" Enter the name of Person ") # "input" is used in Python3 onwards
+       self.age = input(" Enter the age of Person ") # "raw_input" is used in Python2
+       print("\n Printing the contents of object attributes - entered by user")
+       self.display(self)
+       print("\n Printing the contents of p2 object attributes - changed!!! - entered by user")
+       self.display(p2)
+
+  def display(self):
+        print("\nName of Person  is", self.name)
+        print("\nAge of Person is", self.age)
+
+#s1 = Student("Suppandi", 16) #Constructor commented in this code
+
+p1 = Person
+p2 = Person
+
+p2.name = "Forrest Gump!"
+p2.age = 38
+
+#si.insert() # This code wont compile if constructor of Person is not defined, that is "__init__" is commented
+#p1.insert(p1) #"self" is a placeholder name. The object passed need not be itself as in this case
+print("\n Printing the contents of p2 object attributes - changed in insert function!!")
+p1.display(p1)
+# p3.display(p3) #This wont work, because p3 is defined locally inside insert function
+
+
+#Demo: Classes in Python
+#Concept: Use of del function to delete attributes of an object and an object itself
+
+class Person:
+  def __init__(self,name,age): #This is the constructor of the class Person
+    self.name = name;
+    self.age = age;
+
+
+p1 = Person("Suppandi", 14)
+
+
+print("\nName of Person  is", p1.name)
+print("\nAge of Person  is", p1.age)
+
+
+print("\n*** Printing after deleting age attribute for p1****")
+del p1.age #Deleting the age attribute for p1 object
+print("\nName of Person #1 is", p1.name)
+#print("\nAge of Person #1 is", p1.age) #This line will give an error!!!
+#Error is: AttributeError: 'Person' object has no attribute 'age'
+
+print("\n*** Printing after deleting p1****")
+del p1
+print("\nName of Person #1 is", p1.name) #This line will give an error!!!
+#Error is: NameError: name 'p1' is not defined
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Demo: Adding functions to class
+#Concept #1 : Class Variable shared by all objects of class. Here "personCount"
+#This program gives the number of Person objects created
+#Concept #2 : __variablename will create a "secret" variable shared by all objects. Used for "Data Hiding"
+class Person:
+  __secretCount = 0;
+  personCount = 0
+  def __init__(self,name,age):
+    self.name = name;
+    self.age = age;
+    Person.personCount = Person.personCount + 1
+    self.__secretCount = self.__secretCount + 1
+
+  def display(self):
+        print("\nName of Person  is", self.name)
+        print("\nAge of Person  is", self.age)
+        print("personCount: The Total number of person objects is %d" %self.personCount)
+        print("__secretCount: The Total number of person objects is %d" %self.__secretCount)
+
+p1 = Person("Leonardo de Caprio", 26)
+p2 = Person("Kate Winslet", 24)
+p1.display()
+print("Displays 'personCount' because it is public")
+print("personCount: The Total number of person objects is %d" %Person.personCount)
+print("__secretCount: The Total number of person objects is %d" %Person.__secretCount) #Will give Error
+
+

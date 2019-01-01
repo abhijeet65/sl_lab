@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Author details</title>
+</head>
+<body>
+<h1> Author details-JSON </h1>
+<br><br>
+<table id="authortable" border=1>
+<th>Author name</th><th> Book Title</th>
+<tr><td id="author1"></td><td id ="title1"></td></tr>
+<tr><td id="author2"></td><td id ="title2"></td></tr>
+</table>
+<br>
+<br>
+<div style="margin-top: 10px;" id="author3"></div> 
+<br>
+<div style="margin-top: 10px;" id="author4"></div>
+<script type="text/javascript">
+    var authors = [
+        {"author":"JK Rowling","title":"Harry Potter" },
+        {"author":"George Martin","title":"Game of Thrones" },
+        {"author":"Leo Tolstoy", "title":"The prisoner"  },
+	{"author":"Enid Blyton","title":"Hardy boys"}
+    ];
+
+    var i; var k=0;
+
+    for(i = 0; i < 2; i++) 
+    {
+        var obj = authors[i];
+	k=k+1;
+	n = "author"; n +=k;
+        m = "title"; m += k;
+        document.getElementById(n).setAttribute("id",n);
+        document.getElementById(n).innerHTML = obj.author;
+	document.getElementById(m).setAttribute("id",m);
+        document.getElementById(m).innerHTML = obj.title;
+    }
+	var t3= authors[2];
+	var t4= authors[3];
+	document.getElementById('author3').innerHTML = 'Author:\t' + t3.author +'\t\t\t'+ 'Title:\t' + t3.title ;
+	document.getElementById('author4').innerHTML = 'Author:\t' + t4.author +'\t\t\t'+ 'Title:\t' + t4.title ;
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+1) Download the "ins.sh" file on your local drive.
+2) In Terminal, change the location to the directory where the downloaded file is present, say Downloads.
+	Command= cd Downloads
+3) Use the following command to install various python libraries and IDE's like Pandas, Seaborn, Matplotlib, Jupyter Notebook, Numpy, Flask, Cairocffi using pip. 
+	Command= sudo sh ins.sh
